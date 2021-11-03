@@ -10,12 +10,14 @@ app.use(express.static('./public'))
 app.use(bodyParser.urlencoded({extended:true}));
 
 var bookroute=require("./routes/bookingrouter")
+var authroute=require("./routes/auth")
 
 
 app.get("/",function(req,res){
     res.render("home");
 })
 app.use(bookroute);
+app.use(authroute)
 app.listen(process.env.PORT||2000,function(){
     console.log("running");
 });
