@@ -6,7 +6,15 @@ var BookingSchema=new mongoose.Schema({
   from:String,
   to:String,
   num_ppl:{type:Number},
-  cost:{type:Number}
+  cost:{type:Number},
+  owner:{
+    id:{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:"User"
+    },
+    username:String
+    
+},
 
 
 });
