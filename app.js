@@ -17,7 +17,7 @@ app.get("/",function(req,res){
     res.render("home");
 })
 app.use(bookroute);
-app.use(authroute)
+app.use(authroute);
 app.listen(process.env.PORT||2000,function(){
     console.log("running");
 });
