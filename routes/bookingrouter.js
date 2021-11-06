@@ -7,15 +7,20 @@ router.get("/booking/new",function(req,res){
 
 });
 router.post("/booking",function(req,res){
-   var fname=req.body.fname;
-   var  lname=req.body.lname;
-   
+  
+    var train=req.body.train;
+    var date=req.body.date;
+ 
+    var from=req.body.from;
+    var to=req.body.to;
+    var num_ppl=req.body.num_ppl;
+    
     // var author={
     //  id:req.user._id,
     //  username:req.user.username
     // }
 
-    var newBooking={fname:fname,lname:lname}
+    var newBooking={train:train,date:date,from:from,to:to,num_ppl:num_ppl}
     
     
     Booking.create(newBooking,function(err,newlyCreated){
