@@ -34,7 +34,7 @@ router.post("/booking",function(req,res){
     }
     else{
         console.log(newlyCreated);
-        res.redirect("/")
+        res.render("show",{s:newlyCreated})
         
     }
 });
