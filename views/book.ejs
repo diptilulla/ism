@@ -4,9 +4,9 @@
         
     <label>Train Name</label>
     
-   <select name="trains" id="trains">
+   <select name="train" id="trains">
        <%d.features.forEach(function(e) {%>
-    <option value="volvo"> <%=e.properties.name%></option>
+    <option value="<%=e.properties.name%>"> <%=e.properties.name%></option>
       <% })%>
     </select>
   <br><br>

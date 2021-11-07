@@ -50,13 +50,14 @@ router.post("/booking",function(req,res){
 
 
 router.get("/bookings/:id",middleware.isLoggedIn,function(req,res){
-    Booking.find({id:req.params.id},function(err,found){
+    Booking.find({"owner.id":req.params.id},function(err,found){
         if(err){
             res.redirect("/")
             console.log(err)
         }
         else{
             res.render("bookings",{f:found});
+            console.log(req.params.id);
            
         }
     })
