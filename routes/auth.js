@@ -10,7 +10,7 @@ router.get("/register/new",function(req,res){
     res.render("register");
 
 });
-router.get("/register",function(req,res){
+router.get("/register",function(req,res){  //use post method
    var name=req.query.name;
    var sname=req.query.sname;
    var email_id=req.query.email_id;
