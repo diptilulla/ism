@@ -1,0 +1,9 @@
+<%- include('partials/header') %>
+
+<%f.reverse().forEach(function(s){%>
+    <p class="item"><%=s.train%> </p>
+    <p class="item"><%=s.from%></p>
+    <p class="item"><%=s.to%></p>
+    <p class="item"><%=s.num_ppl%></p>
+    <p class="item"><%=s.cost%></p>
+<%}) %>

@@ -9,7 +9,10 @@
     </style>
    
 
-        
+ 
+
+
+      
 
 </head>
 <body>
@@ -21,23 +24,28 @@
         <a href="/" class="item">
           Home
         </a>
-        <a href="/bookings" class="item">
-          Your Bookings
-        </a>
+      
+        
         <a href="/booking/new" class="item">
           New booking
         </a>
         <div class="right menu">
           <%if(!currentuser){%>
-
+           
+        <a href="/login" class="item">
+          Your Bookings
+        </a>
           <a href="/login" class="item">
           Login</a>
           <a href="/register" class="item">
             Signup
           </a>
        <% } else{%>
-
-       <a href="#" >Welcome <%=currentuser.username %></a>
+        
+        <a href="/bookings/<%=currentuser.id%>" class="item">
+          Your Bookings
+        </a>
+       <a href="#" class ="item">Welcome <%=currentuser.username %> </a>
         <a href="/logout" class="item">
           Logout</a>
        <% }%>

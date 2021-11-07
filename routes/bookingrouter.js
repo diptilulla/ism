@@ -1,7 +1,9 @@
 var express          =require("express");
 var router           =express.Router();
 var Booking            =require("../models/booking");
+var User               =require("../models/user");
 var middleware       =require("../middleware/middleware");  
+
 
 router.get("/booking/new",middleware.isLoggedIn,function(req,res){
     res.render("book");
@@ -38,4 +40,19 @@ router.post("/booking",function(req,res){
 });
 
 });
+
+
+
+router.get("/bookings/:id",middleware.isLoggedIn,function(req,res){
+    Booking.find({id:req.params.id},function(err,found){
+        if(err){
+            res.redirect("/")
+            console.log(err)
+        }
+        else{
+            res.render("bookings",{f:found});
+           
+        }
+    })
+})
 module.exports=router;
