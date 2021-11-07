@@ -55,4 +55,17 @@ router.get("/bookings/:id",middleware.isLoggedIn,function(req,res){
         }
     })
 })
+
+
+router.post("/bookings/:id",middleware.checkOwnership,function(req,res){
+    Booking.findByIdAndRemove({_id:req.params.id},function(err){
+      if(err){
+          res.redirect("/");
+          console.log(err)
+      }
+      else{
+          res.redirect("/")
+      }
+    })
+})
 module.exports=router;
