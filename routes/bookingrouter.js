@@ -1,16 +1,22 @@
 var express          =require("express");
 var router           =express.Router();
 var Booking            =require("../models/booking");
-var User               =require("../models/user");
 var middleware       =require("../middleware/middleware");  
+var fs = require('fs');
 
 
 router.get("/booking/new",middleware.isLoggedIn,function(req,res){
-    res.render("book");
+  
+fs.readFile('./trains.json', 'utf8', function (err, data) {
+  if (err) throw err;
+  var obj = JSON.parse(data);
+
+    res.render("book",{d:obj});
+});
 
 });
 router.post("/booking",function(req,res){
-  
+    
     var train=req.body.train;
     var date=req.body.date;
  

@@ -1,9 +1,16 @@
 <%- include('partials/header') %>
+
 <form class="ui form " action="/booking" method="POST">
         
     <label>Train Name</label>
-    <input type="text" name="fname" placeholder="train" required ><br><br>
-
+    
+   <select name="trains" id="trains">
+       <%d.features.forEach(function(e) {%>
+    <option value="volvo"> <%=e.properties.name%></option>
+      <% })%>
+    </select>
+  <br><br>
+   
     <label>Date</label>
     <input type="date" name="date"  required><br><br>
 
