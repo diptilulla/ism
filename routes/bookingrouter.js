@@ -1,8 +1,9 @@
 var express          =require("express");
 var router           =express.Router();
 var Booking            =require("../models/booking");
+var middleware       =require("../middleware/middleware");  
 
-router.get("/booking/new",function(req,res){
+router.get("/booking/new",middleware.isLoggedIn,function(req,res){
     res.render("book");
 
 });
@@ -15,12 +16,12 @@ router.post("/booking",function(req,res){
     var to=req.body.to;
     var num_ppl=req.body.num_ppl;
     
-    // var author={
-    //  id:req.user._id,
-    //  username:req.user.username
-    // }
+    var owner={
+     id:req.user._id,
+     username:req.user.username
+    }
 
-    var newBooking={train:train,date:date,from:from,to:to,num_ppl:num_ppl}
+    var newBooking={train:train,date:date,from:from,to:to,num_ppl:num_ppl,owner:owner}
     
     
     Booking.create(newBooking,function(err,newlyCreated){
