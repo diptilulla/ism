@@ -7,10 +7,22 @@
    <select name="train" id="trains">
        <%d.features.forEach(function(e) {%>
     <option value="<%=e.properties.name%>"> <%=e.properties.name%></option>
-      <% })%>
+    <%})%>
     </select>
   <br><br>
-   
+ 
+  <!-- <script>
+    var dept=document.getElementById("dept");
+    var arr=document.getElementById("arr");
+    function func(){
+      dept.textContent= e.properties.departure;
+      arr.textContent= e.properties.arrival;
+    }
+    document.getElementById("trains").onchange=func;
+  </script> -->
+
+
+ 
     <label>Date</label>
     <input type="date" name="date"  required><br><br>
 

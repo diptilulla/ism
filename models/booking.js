@@ -3,6 +3,8 @@ var BookingSchema=new mongoose.Schema({
 
   train:String,
   date:{type:Date},
+  dept:{type:Date},
+  arr:{type:Date},
   from:String,
   to:String,
   num_ppl:{type:Number},

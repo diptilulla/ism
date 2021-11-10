@@ -1,0 +1,19 @@
+{
+  "name": "isaa-project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start":"node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aku134/ISAA-Project.git"
+  },
+  "author": "akshita",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/aku134/ISAA-Project/issues"
+  },
+  "homepage": "https://github.com/aku134/ISAA-Project#readme"
+}

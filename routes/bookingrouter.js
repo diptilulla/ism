@@ -1,6 +1,6 @@
 var express          =require("express");
 var router           =express.Router();
-var Booking            =require("../models/booking");
+var Booking           =require("../models/booking");
 var middleware       =require("../middleware/middleware");  
 var fs = require('fs');
 
@@ -19,17 +19,18 @@ router.post("/booking",function(req,res){
     
     var train=req.body.train;
     var date=req.body.date;
- 
+    var dept=req.body.dept;
+    var arr=req.body.arr;
     var from=req.body.from;
     var to=req.body.to;
     var num_ppl=req.body.num_ppl;
-    
+    var cost=100*num_ppl;
     var owner={
      id:req.user._id,
      username:req.user.username
     }
 
-    var newBooking={train:train,date:date,from:from,to:to,num_ppl:num_ppl,owner:owner}
+    var newBooking={train:train,date:date,from:from,to:to,num_ppl:num_ppl,cost:cost,owner:owner}
     
     
     Booking.create(newBooking,function(err,newlyCreated){
