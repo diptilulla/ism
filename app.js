@@ -7,7 +7,22 @@ var express             =require("express"),
  User                   =require("./models/user"),
  app                    =express()
 
- mongoose.connect("mongodb://localhost/train");
+//  mongoose.connect("mongodb://localhost/train");
+//  const connection = "mongodb+srv://aku10:#Titanium10@<cluster>/MyFirstDatabase?retryWrites=true&w=majority";
+// mongoose.connect(connection,{ useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false})
+//     .then(() => console.log("Database Connected Successfully"))
+//     .catch(err => console.log(err));
+
+const { MongoClient } = require('mongodb');
+const uri = "mongodb+srv://aku:%23Titanium10@cluster0.t727p.mongodb.net/Train?retryWrites=true&w=majority";
+mongoose.connect(uri)
+// const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+// client.connect(err => {
+// //   const collection = client.db("Train").collection("");
+// //   // perform actions on the collection object
+//   client.close();
+// });
+
 
 app.set("view engine","ejs");
 app.use(express.static('./public'))
