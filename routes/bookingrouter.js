@@ -43,6 +43,7 @@ router.post("/booking",function(req,res){
     else{
         console.log(newlyCreated);
         res.render("show",{s:newlyCreated})
+        console.log(newlyCreated)
         
     }
 });
