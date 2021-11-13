@@ -1,6 +1,7 @@
 var express          =require("express");
 var router           =express.Router();
 var Booking           =require("../models/booking");
+var User             =require("../models/user")
 var middleware       =require("../middleware/middleware");  
 var fs = require('fs');
 
@@ -62,6 +63,7 @@ router.get("/bookings/:id",middleware.isLoggedIn,function(req,res){
            
         }
     })
+   
 })
 
 
@@ -76,4 +78,22 @@ router.post("/bookings/:id",middleware.checkOwnership,function(req,res){
       }
     })
 })
+router.get("/user",middleware.isLoggedIn,function(req,res){
+    res.render("find")
+})
+
+router.get("/finduser",middleware.isLoggedIn,function(req,res){
+    var username=req.query.username
+    console.log(username)
+    query = { $where:`this.username == '${username}'` }
+User.find(query, function (err, users) {
+	if (err) {
+		res.redirect("/");
+          console.log(err)
+	} else {
+		res.render('result', { users: users });
+        console.log(users)
+	}
+});
+});
 module.exports=router;
