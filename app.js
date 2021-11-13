@@ -10,11 +10,6 @@ var express             =require("express"),
  mongoose.connect("mongodb://localhost/train");
 
 
-// const uri = "mongodb+srv://aku:%23Titanium10@cluster0.t727p.mongodb.net/Train?retryWrites=true&w=majority";
-// mongoose.connect(uri)
-
-
-
 app.set("view engine","ejs");
 app.use(express.static('./public'))
 app.use(bodyParser.urlencoded({extended:true}));
