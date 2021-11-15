@@ -21,7 +21,8 @@ var authroute=require("./routes/auth")
 app.use(require("express-session")({
     secret:"COOOOOL COOOOL COOOL",
     resave:false,
-    saveUninitialized: false
+    saveUninitialized: false,
+   
 }));
 
 app.use(passport.initialize());

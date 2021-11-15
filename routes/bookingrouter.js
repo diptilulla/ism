@@ -42,8 +42,8 @@ router.post("/booking",function(req,res){
     }
     else{
         console.log(newlyCreated);
-        res.render("show",{s:newlyCreated})
-        console.log(newlyCreated)
+        res.send('<html><body> <h1>Booking summary</h1>'+newlyCreated.train+newlyCreated.date+newlyCreated.from+newlyCreated.to+newlyCreated.num_ppl+newlyCreated.cost+'</body></html>')
+       
         
     }
 });
@@ -86,14 +86,14 @@ router.get("/user",middleware.isLoggedIn,function(req,res){
 router.get("/finduser",middleware.isLoggedIn,function(req,res){
     var username=req.query.username
     console.log(username)
-    query = { $where:`this.username == '${username}'` }
+    query = { $where:`this.username === '${username}'` }
 User.find(query, function (err, users) {
 	if (err) {
 		res.redirect("/");
           console.log(err)
 	} else {
-		res.render('result', { users: users });
-        console.log(users)
+		res.render('result',{users:users});
+      
 	}
 });
 });
