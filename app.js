@@ -1,14 +1,22 @@
 var express             =require("express"),
- mongoose               =require("mongoose"),
- bodyParser             =require("body-parser"),
- passport               =require("passport"),
- LocalStrategy          =require("passport-local"),
- passportLocalMongoose  =require("passport-local-mongoose"),
- User                   =require("./models/user"),
- app                    =express()
+mongoose               =require("mongoose"),
+bodyParser             =require("body-parser"),
+passport               =require("passport"),
+LocalStrategy          =require("passport-local"),
+passportLocalMongoose  =require("passport-local-mongoose"),
+User                   =require("./models/user"),
+app                    =express()
 
- mongoose.connect("mongodb://localhost/train");
-
+mongoose.connect("mongodb://localhost/train");
+const rateLimit = require("express-rate-limit");
+//const app = express();
+const limiter = rateLimit({
+    windowMs: 1 * 60 * 1000, // 1 minute
+    max: 5, // limit each IP to 5 requests per windowMs
+    message: "Too many requests from this IP."
+});
+  //  apply to all requests
+    app.use(limiter);
 
 app.set("view engine","ejs");
 app.use(express.static('./public'))

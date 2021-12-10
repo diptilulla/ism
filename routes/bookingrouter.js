@@ -4,7 +4,7 @@ var Booking           =require("../models/booking");
 var User             =require("../models/user")
 var middleware       =require("../middleware/middleware");  
 var fs = require('fs');
-
+let alert = require('alert');
 
 router.get("/booking/new",middleware.isLoggedIn,function(req,res){
   
@@ -27,9 +27,10 @@ router.post("/booking",function(req,res){
     var num_ppl=req.body.num_ppl;
     var cost=100*num_ppl;
     var owner={
-     id:req.user._id,
-     username:req.user.username
+    id:req.user._id,
+    username:req.user.username
     }
+    if((/^[a-zA-Z\s]*$/).test(from) && (/^[a-zA-Z\s]*$/).test(to) && (/^[0-9]*$/).test(num_ppl)){
 
     var newBooking={train:train,date:date,from:from,to:to,num_ppl:num_ppl,cost:cost,owner:owner}
     
@@ -43,11 +44,13 @@ router.post("/booking",function(req,res){
     else{
         console.log(newlyCreated);
         res.send('<html><body> <h1>Booking summary</h1>'+newlyCreated.train+newlyCreated.date+newlyCreated.from+newlyCreated.to+newlyCreated.num_ppl+newlyCreated.cost+'</body></html>')
-       
+
         
     }
 });
-
+    }else{
+        alert("Invalid Input!");
+    }
 });
 
 
@@ -70,31 +73,36 @@ router.get("/bookings/:id",middleware.isLoggedIn,function(req,res){
 
 router.post("/bookings/:id",middleware.checkOwnership,function(req,res){
     Booking.findByIdAndRemove({_id:req.params.id},function(err){
-      if(err){
-          res.redirect("/");
-          console.log(err)
-      }
-      else{
-          res.redirect("/")
-      }
+        if(err){
+            res.redirect("/");
+            console.log(err)
+        }
+        else{
+            res.redirect("/")
+        }
     })
 })
 router.get("/user",middleware.isLoggedIn,function(req,res){
     res.render("find")
 })
 
+
 router.get("/finduser",middleware.isLoggedIn,function(req,res){
     var username=req.query.username
     console.log(username)
+    if(!(/^[a-zA-Z0-9]+$/i).test(username)){
+        alert('Username should contain only alphabets and numbers!');
+    }else{
     query = { $where:`this.username === '${username}'` }
-User.find(query, function (err, users) {
-	if (err) {
-		res.redirect("/");
-          console.log(err)
-	} else {
-		res.render('result',{users:users});
-      
-	}
-});
+    User.find(query, function (err, users) {
+        if (err) {
+            res.redirect("/");
+            console.log(err)
+        } else {
+            res.render('result',{users:users});
+        }
+    });
+}
+
 });
 module.exports=router;
