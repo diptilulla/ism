@@ -42,6 +42,7 @@ router.post("/booking",function(req,res){
         console.log("error")
     }
     else{
+       
         console.log(newlyCreated);
         res.send('<html><body> <h1>Booking summary</h1>'+newlyCreated.train+newlyCreated.date+newlyCreated.from+newlyCreated.to+newlyCreated.num_ppl+newlyCreated.cost+'</body></html>')
 
@@ -73,13 +74,16 @@ router.get("/bookings/:id",middleware.isLoggedIn,function(req,res){
 
 router.post("/bookings/:id",middleware.checkOwnership,function(req,res){
     Booking.findByIdAndRemove({_id:req.params.id},function(err){
-        if(err){
-            res.redirect("/");
-            console.log(err)
-        }
-        else{
-            res.redirect("/")
-        }
+
+      if(err){
+          res.redirect("/");
+          console.log(err)
+      }
+      else{
+        
+          res.redirect("/")
+      }
+
     })
 })
 router.get("/user",middleware.isLoggedIn,function(req,res){
