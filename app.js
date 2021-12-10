@@ -5,11 +5,10 @@ var express             =require("express"),
  LocalStrategy          =require("passport-local"),
  passportLocalMongoose  =require("passport-local-mongoose"),
  User                   =require("./models/user"),
- app                    =express()
+ app                    =express();
+
 
  mongoose.connect("mongodb://localhost/train");
-
-
 app.set("view engine","ejs");
 app.use(express.static('./public'))
 app.use(bodyParser.urlencoded({extended:true}));
@@ -17,6 +16,17 @@ app.use(bodyParser.urlencoded({extended:true}));
 var bookroute=require("./routes/bookingrouter")
 var authroute=require("./routes/auth")
 
+var RateLimit = require('express-rate-limit');
+ 
+ 
+  
+ const apiRequestLimiter = RateLimit({
+     windowMs: 1 * 60 * 1000, // 1 minute
+     max: 5 // limit each IP to 5 requests per windowMs
+ })
+ 
+ // Use the limit rule as an application middleware
+ app.use(apiRequestLimiter)
 
 app.use(require("express-session")({
     secret:"COOOOOL COOOOL COOOL",
@@ -49,6 +59,9 @@ app.get("/",function(req,res){
 
 app.use(bookroute);
 app.use(authroute);
+
+
+
 
 app.listen(process.env.PORT||2000,function(){
     console.log("running");

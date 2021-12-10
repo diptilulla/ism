@@ -2,15 +2,17 @@ var express          =require("express");
 var router           =express.Router();
 var passport         =require("passport");
 var User            =require("../models/user");
+var { body, validationResult } = require('express-validator');
 
 router.get('/users', function(req, res) {
     res.json({ currentUser: req.user });
 });
-router.get("/register/new",function(req,res){
+router.get("/register",function(req,res){
     res.render("register");
 
 });
-router.get("/register",function(req,res){  //use post method
+router.get("/register",
+function(req,res){  //use post method
    var name=req.query.name;
    var sname=req.query.sname;
    var email_id=req.query.email_id;
@@ -30,8 +32,7 @@ router.get("/register",function(req,res){  //use post method
       console.log(user)      
       passport.authenticate("local")(req,res,function(){
             res.redirect("/");
-            console.log("i am working")
-
+           
         });
         
     
@@ -46,7 +47,7 @@ router.get("/login",function(req,res){
 router.post("/login",passport.authenticate("local",{
     successRedirect:"/",
     failureRedirect:"/register"
-}),function(req,res){
+}) ,function(req,res){
 
 });
 
