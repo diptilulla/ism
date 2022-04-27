@@ -1,0 +1,46 @@
+<head>
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css"
+    type="text/css"
+  />
+</head>
+<body>
+  <h3>Contact us</h3>
+  <div class="ui main text container" id="thankyou"></div>
+
+  <form class="ui form">
+    <script>
+      const form = document.querySelector("form");
+      const thank = document.getElementById("thankyou");
+      console.log(thank);
+      form.addEventListener("submit", func);
+      function func(e) {
+        e.preventDefault();
+        var msg = document.getElementById("msgfield");
+        var msgimg = document.getElementById("messageimagefield");
+        var data = "<h4>Your response</h4>";
+        data = `${data} <div><p>Message: ${msg.value}</p><img src="${msgimg.value}" height="100px" alt="${msg.value}"></div>`;
+        thank.innerHTML = data;
+        // thank.textContent = data; //prevention
+        return false;
+      }
+      function myFunction() {
+        alert("The form was submitted");
+      }
+    </script>
+
+    <label>Message</label>
+    <input type="text" name="msg" id="msgfield" required /><br /><br />
+
+    <label>Message image url</label>
+    <input
+      type="text"
+      name="msgimage"
+      id="messageimagefield"
+      required
+    /><br /><br />
+
+    <input class="ui basic button" type="submit" value="contact" />
+  </form>
+</body>
