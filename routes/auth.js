@@ -151,7 +151,7 @@ router.post("/login", function (req, res) {
 router.get("/logout", function (req, res) {
   // req.logout();
   res.clearCookie("user");
-  res.redirect("/");
+  res.render("logout");
 });
 
 module.exports = router;

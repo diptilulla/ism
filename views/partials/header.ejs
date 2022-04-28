@@ -6,33 +6,18 @@
 <body>
     <div class="ui fixed inverted menu">
         <div class="ui container">
-            <div class="header item">Booking</div>
+            <div class="header item">Model</div>
         <a href="/" class="item">
           Home
         </a>
-        <a href="/user" class="item">
-        Get your details
-        </a>
-        
-        <a href="/booking/new" class="item">
-          New booking
-        </a>
         <div class="right menu">
           <%if(!currentuser){%>
-           
-        <a href="/login" class="item">
-          Your Bookings
-        </a>
           <a href="/login" class="item">
           Signin</a>
           <a href="/register" class="item">
             Register
           </a>
        <% } else{%>
-        
-        <a href="/bookings/<%=currentuser.id%>" class="item">
-          Your Bookings
-        </a>
        <a href="#" class ="item">Welcome <%=currentuser %> </a>
         <a href="/logout" class="item">
           Logout</a>
